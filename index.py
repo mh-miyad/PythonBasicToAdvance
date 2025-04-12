@@ -354,3 +354,119 @@ def count_up_to(n):
     while i < n:
         yield i
         i += 1
+
+# ============================================================
+# ৬. অ্যাডভান্সড পাইথন কনসেপ্টস (Advanced Python Concepts)
+# ============================================================
+
+# ডেকোরেটরস (Decorators)
+def timer_decorator(func):
+    def wrapper(*args, **kwargs):
+        import time
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f"{func.__name__} executed in {end-start:.4f} seconds")
+        return result
+    return wrapper
+
+@timer_decorator
+def factorial(n):
+    return 1 if n == 0 else n * factorial(n-1)
+
+# জাভাস্ক্রিপ্ট কম্পেরিজন: 
+# function timerDecorator(fn) {
+#   return function(...args) {
+#     const start = Date.now();
+#     const result = fn(...args);
+#     console.log(`${fn.name} executed in ${Date.now() - start}ms`);
+#     return result;
+#   }
+# }
+
+# জেনারেটরস (Generators)
+def fibonacci_generator(limit):
+    a, b = 0, 1
+    while a < limit:
+        yield a
+        a, b = b, a + b
+
+# জাভাস্ক্রিপ্ট কম্পেরিজন:
+# function* fibonacciGenerator(limit) {
+#   let [a, b] = [0, 1];
+#   while (a < limit) {
+#     yield a;
+#     [a, b] = [b, a + b];
+#   }
+# }
+
+# কনটেক্সট ম্যানেজার (Context Managers)
+class FileManager:
+    def __init__(self, filename, mode):
+        self.filename = filename
+        self.mode = mode
+
+    def __enter__(self):
+        self.file = open(self.filename, self.mode)
+        return self.file
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.file.close()
+
+# মেটাক্লাস (Metaclasses)
+class SingletonMeta(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class Database(metaclass=SingletonMeta):
+    pass
+
+# কনকারেন্সি (Concurrency)
+import threading
+import asyncio
+
+# থ্রেডিং উদাহরণ
+def print_numbers():
+    for i in range(5):
+        print(i)
+
+thread = threading.Thread(target=print_numbers)
+thread.start()
+
+# অ্যাসিনক্রোনাস উদাহরণ
+async def async_greeting():
+    await asyncio.sleep(1)
+    print("Hello Async World!")
+
+# অ্যাডভান্সড OOP
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.1416 * self.radius ** 2
+
+# মাল্টিপল ইনহেরিটেন্স
+class Camera:
+    def take_photo(self):
+        print("Taking photo")
+
+class Phone:
+    def make_call(self):
+        print("Making call")
+
+class SmartPhone(Camera, Phone):
+    pass
+
+# জাভাস্ক্রিপ্ট কম্পেরিজন:
+# class SmartPhone extends Camera, Phone {} // JavaScript এ মাল্টিপল ইনহেরিটেন্স সাপোর্ট করে না
