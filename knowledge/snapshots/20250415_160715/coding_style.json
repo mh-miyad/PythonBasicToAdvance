@@ -1,0 +1,18 @@
+{
+  "HTML": {
+    "indentation": 2,
+    "attribute_quotes": "double",
+    "self_closing": true
+  },
+  "CSS": {
+    "indentation": 2,
+    "property_newline": true,
+    "bracket_style": "same-line"
+  },
+  "JavaScript": {
+    "indentation": 2,
+    "semicolons": true,
+    "quotes": "single",
+    "bracket_style": "same-line"
+  }
+}

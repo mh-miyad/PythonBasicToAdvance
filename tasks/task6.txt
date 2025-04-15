@@ -1,0 +1,1 @@
+ctreate price html and hertask create price.html with pricing table and bootstrap layout

@@ -1,0 +1,14 @@
+.card h2 {
+  margin-top: 0;
+  color: #007bff;
+  gap: 20px;
+}
+
+.nav {
+  flex-direction: row;
+  gap: 20px;
+}
+
+/* M;  p
+}
+}
